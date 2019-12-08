@@ -19,6 +19,8 @@
 
 #include "XmsgChannelStatusMsg.h"
 #include "mgr/XmsgImMgrNeNetLoad.h"
+#include "mgr/XmsgImMgrNeXscServerQuery.h"
+#include "mgr/XmsgImMgrNeXscWorkerCount.h"
 #include "msg/XmsgChannelStatusQuery.h"
 #include "msg/XmsgChannelStatusSub.h"
 #include "msg/XmsgChannelStatusUnSub.h"
@@ -42,8 +44,10 @@ void XmsgChannelStatusMsg::init(shared_ptr<XmsgImN2HMsgMgr> priMsgMgr)
 	X_MSG_H2N_PRPC_AFTER_AUTH_UNI(XmsgImHlr, XmsgImHlrChannelStatusChangedNotice, XmsgImHlrChannelStatusChanged::handle)
 	X_MSG_H2N_PRPC_AFTER_AUTH(XmsgImGroup, XmsgImGroupChannelStatusPubReq, XmsgImGroupChannelStatusPubRsp, XmsgImGroupChannelStatusPub::handle)
 	X_MSG_H2N_PRPC_AFTER_AUTH_UNI(XmsgImGroup, XmsgImGroupChannelStatusChangedNotice, XmsgImGroupChannelStatusChanged::handle)
-	X_MSG_N2H_PRPC_AFTER_AUTH(priMsgMgr, XmsgImMgrNeNetLoadReq, XmsgImMgrNeNetLoadRsp, XmsgImMgrNeNetLoad::handle)
 	X_MSG_N2H_PRPC_BEFOR_AUTH(priMsgMgr, XmsgNeAuthReq, XmsgNeAuthRsp, XmsgNeAuth::handle)
+	X_MSG_N2H_PRPC_AFTER_AUTH(priMsgMgr, XmsgImMgrNeNetLoadReq, XmsgImMgrNeNetLoadRsp, XmsgImMgrNeNetLoad::handle)
+	X_MSG_N2H_PRPC_AFTER_AUTH(priMsgMgr, XmsgImMgrNeXscServerQueryReq, XmsgImMgrNeXscServerQueryRsp, XmsgImMgrNeXscServerQuery::handle)
+	X_MSG_N2H_PRPC_AFTER_AUTH(priMsgMgr, XmsgImMgrNeXscWorkerCountReq, XmsgImMgrNeXscWorkerCountRsp, XmsgImMgrNeXscWorkerCount::handle)
 }
 
 XmsgChannelStatusMsg::~XmsgChannelStatusMsg()
